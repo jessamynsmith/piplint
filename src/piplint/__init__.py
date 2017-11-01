@@ -117,6 +117,7 @@ def check_requirements(requirement_files, strict=False, error_on_extras=False, v
         args = venv + "/bin/" + args
     freeze = Popen([args], stdout=PIPE, shell=True)
     for line in freeze.communicate()[0].splitlines():
+        line = line.decode('utf-8')
         line = line.strip()
         if not is_requirements_line(line):
             unknown_reqs.add(line)
